@@ -1,4 +1,5 @@
 from win_cons import check_for_victory
+from console_input import player_input
 MOVE_LIST = [" 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " 9 "]
 
 
@@ -12,14 +13,6 @@ def show_board(ml):
     print(ml[6] + bar + ml[7] + bar + ml[8])
 
 
-def player_input():
-    value = input("Select a position...")
-    check = input(f'You entered: {value} continue? (y)es (n)o  ')
-    val = int(value) - 1
-
-    return val if check == 'y' else player_input()
-
-
 def update_board(ml, choice):
     ml[choice] = " X "
     return ml
@@ -28,9 +21,13 @@ def update_board(ml, choice):
 show_board(MOVE_LIST)
 victory = False
 winner = ''
+turn_log = []
 while(victory == False):
     print("   ")
-    choice = player_input()
+
+    choice = player_input(turn_log)
+
+    turn_log.append(choice)
 
     uml = update_board(MOVE_LIST, choice)
     print("   ")
