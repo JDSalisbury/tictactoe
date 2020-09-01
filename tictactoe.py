@@ -17,7 +17,17 @@ def player_input():
     return val if check == 'y' else player_input()
 
 
-show_board(MOVE_LIST)
+def update_board(ml, choice):
+    ml[choice] = " X "
+    return ml
 
-choice = player_input()
-print(choice)
+
+show_board(MOVE_LIST)
+victory = False
+
+while(victory == False):
+    choice = player_input()
+
+    uml = update_board(MOVE_LIST, choice)
+
+    show_board(uml)
