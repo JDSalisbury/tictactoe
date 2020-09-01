@@ -2,11 +2,13 @@ MOVE_LIST = [" 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " 9 "]
 
 
 def show_board(ml):
-    print(ml[0] + " | " + ml[1] + " | " + ml[2])
-    print("____ _____ ____")
-    print(ml[3] + " | " + ml[4] + " | " + ml[5])
-    print("____ _____ ____")
-    print(ml[6] + " | " + ml[7] + " | " + ml[8])
+    line = "____ _____ ____"
+    bar = " | "
+    print(ml[0] + bar + ml[1] + bar + ml[2])
+    print(line)
+    print(ml[3] + bar + ml[4] + bar + ml[5])
+    print(line)
+    print(ml[6] + bar + ml[7] + bar + ml[8])
 
 
 def player_input():
