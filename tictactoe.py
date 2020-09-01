@@ -22,12 +22,28 @@ def update_board(ml, choice):
     return ml
 
 
+def check_for_victory(ml):
+    status = False
+    winner = ""
+    if ml[0] == ml[1] == ml[2]:
+        status = True
+        winner = ml[0]
+
+    return status, winner
+
+
 show_board(MOVE_LIST)
 victory = False
-
+winner = ''
 while(victory == False):
+    print("   ")
     choice = player_input()
 
     uml = update_board(MOVE_LIST, choice)
+    print("   ")
 
     show_board(uml)
+
+    victory, winner = check_for_victory(uml)
+
+print(winner, " is the winner!")
