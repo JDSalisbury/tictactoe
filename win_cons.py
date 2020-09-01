@@ -37,3 +37,11 @@ def check_for_victory(l):
         winner = p3
 
     return status, winner
+
+
+def announce_winner(check):
+    if check:
+        if check == ' X ':
+            print("Player One is the winner!")
+        else:
+            print("Player Two is the winner!")

@@ -1,39 +1,30 @@
-from win_cons import check_for_victory
-from console_input import player_input
-MOVE_LIST = [" 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " 9 "]
 
-
-def show_board(ml):
-    line = "____ _____ ____"
-    bar = " | "
-    print(ml[0] + bar + ml[1] + bar + ml[2])
-    print(line)
-    print(ml[3] + bar + ml[4] + bar + ml[5])
-    print(line)
-    print(ml[6] + bar + ml[7] + bar + ml[8])
-
-
-def update_board(ml, choice):
-    ml[choice] = " X "
-    return ml
+from game_mechanics import show_board, player_turn, MOVE_LIST, set_game_info
 
 
 show_board(MOVE_LIST)
-victory = False
-winner = ''
-turn_log = []
-while(victory == False):
-    print("   ")
 
-    choice = player_input(turn_log)
+game_info = {
+    'victory': False,
+    'winner': '',
+    'turn_log': [],
+    'player_one': ' X ',
+    'player_two': ' O ',
+}
 
-    turn_log.append(choice)
+while(game_info['victory'] == False):
 
-    uml = update_board(MOVE_LIST, choice)
-    print("   ")
-    victory, winner = check_for_victory(uml)
+    choice, uml, vic, win = player_turn(
+        game_info['turn_log'], game_info['player_one'])
 
-    show_board(uml)
+    set_game_info(game_info, choice, uml, vic, win)
 
+    if game_info['winner']:
+        break
 
-print(winner, " is the winner!")
+    # player two
+
+    choice, uml, vic, win = player_turn(
+        game_info['turn_log'], game_info['player_two'])
+
+    set_game_info(game_info, choice, uml, vic, win)
